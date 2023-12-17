@@ -30,14 +30,14 @@ Route::get('/logout',   [AuthController::class, 'logout'])->name('logout');
 // Route Middleware untuk pengguna
 Route::middleware(['auth:pengguna'])->group(function () {
     Route::resource('/dashboard', DashboardController::class);
+    
+    // Route Mobil
+    Route::resource('/mobil', \App\Http\Controllers\MobilController::class);
+    Route::get('search', [MobilController::class, 'search'])->name('mobil.search');
+
+    // Route Peminjaman
+    Route::resource('/peminjaman', \App\Http\Controllers\PeminjamanController::class);
+
+    // Route Pengembalian
+    Route::resource('/pengembalian', \App\Http\Controllers\PengembalianController::class);
 });
-
-// Route Mobil
-Route::resource('/mobil', \App\Http\Controllers\MobilController::class);
-Route::get('search', [MobilController::class, 'search'])->name('mobil.search');
-
-// Route Peminjaman
-Route::resource('/peminjaman', \App\Http\Controllers\PeminjamanController::class);
-
-// Route Pengembalian
-Route::resource('/pengembalian', \App\Http\Controllers\PengembalianController::class);
